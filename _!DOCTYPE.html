@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Criptografia e Descriptografia</title>
+    <style>
+        body {
+            background-image: url('turma_da_monica.jpg');
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        #container {
+            background-color: rgba(255, 255, 255, 0.384);
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #000;
+        }
+        #openMessage {
+            font-family: 'Impact';
+            color: rgb(0, 0, 0);
+        }
+        #encryptedMessage
+         {
+            font-family: 'Impact';
+            color: rgb(0, 0, 0);
+        }
+        .button-green 
+        {
+            background-color: rgb(247, 247, 247);
+            color: rgb(0, 0, 0);
+        }
+        .button-blue {
+            background-color: rgb(247, 247, 247);
+            color: rgb(0, 0, 0);
+        }
+        h1 {
+            font-family: 'Impact'; 
+            color: #500e0e; 
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <h1>Cifra de Substituição - Turma da Mônica</h1>
+
+        <form id="cipherForm">
+            <label for="openMessage">Mensagem Aberta:</label>
+            <input type="text" id="openMessage" name="openMessage" required><br><br>
+
+            <label for="encryptedMessage">Mensagem Criptografada (ASCII):</label>
+            <input type="text" id="encryptedMessage" name="encryptedMessage" required><br><br>
+
+            <button type="button" id="encryptButton" class="button-green" onclick="encryptMessage()">Criptografar</button>
+            <button type="button" id="decryptButton" class="button-blue" onclick="decryptMessage()">Descriptografar</button>
+        </form>
+    </div>
+
+    <script>
+        function encryptMessage() {
+            const openMessage = document.getElementById("openMessage").value;
+            let encryptedMessage = '';
+
+            for (let i = 0; i < openMessage.length; i++) {
+                const charCode = openMessage.charCodeAt(i);
+                encryptedMessage += charCode + ' ';
+            }
+
+            document.getElementById("encryptedMessage").value = encryptedMessage;
+        }
+
+        function decryptMessage() {
+            const encryptedMessage = document.getElementById("encryptedMessage").value;
+            const charCodes = encryptedMessage.split(' ');
+
+            let openMessage = '';
+
+            for (let i = 0; i < charCodes.length; i++) {
+                const charCode = parseInt(charCodes[i]);
+                openMessage += String.fromCharCode(charCode);
+            }
+
+            document.getElementById("openMessage").value = openMessage;
+        }
+    </script>
+</body>
+</html>
